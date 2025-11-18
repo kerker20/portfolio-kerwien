@@ -52,6 +52,7 @@
       /* Recreating the Tailwind Radial Gradient */
       background-image: radial-gradient(ellipse at top right, rgba(49, 46, 129, 0.2), transparent 70%);
       min-height: 100vh;
+      overflow-x: hidden; /* Prevent horizontal scroll from animations */
     }
 
     a {
@@ -87,6 +88,27 @@
       white-space: nowrap;
       border-width: 0;
     }
+
+    /* --- Animations --- */
+    
+    /* Scroll Animation Base Class */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      will-change: opacity, transform;
+    }
+
+    /* Visible State */
+    .reveal-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Staggered Delays for Grids */
+    .reveal-delay-100 { transition-delay: 100ms; }
+    .reveal-delay-200 { transition-delay: 200ms; }
+    .reveal-delay-300 { transition-delay: 300ms; }
 
     /* --- Scrollbar --- */
     ::-webkit-scrollbar {
@@ -207,12 +229,28 @@
       height: 24px;
     }
 
-    /* Mobile Menu Dropdown */
+    /* Mobile Menu Dropdown (Animated) */
     #mobile-menu {
-      padding: 0.5rem;
+      /* Initial Closed State */
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      padding: 0 0.5rem; /* remove vertical padding initially */
+      
       background-color: var(--secondary-900);
       border-bottom: 1px solid var(--secondary-800);
+      
+      /* Animation Properties */
+      transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out, padding 0.3s ease;
     }
+    
+    /* Open State Class (Added via JS) */
+    #mobile-menu.menu-open {
+      max-height: 500px; /* Large enough to fit content */
+      opacity: 1;
+      padding: 0.5rem; /* Restore padding */
+    }
+
     .mobile-nav-link {
       display: block;
       padding: 0.75rem 1rem;
@@ -378,7 +416,7 @@
     }
     .cert-item a:hover {
       color: var(--primary-400);
-      text-decoration: underline;
+      /* text-decoration: underline; */
     }
 
     /* --- Projects Section --- */
@@ -639,8 +677,8 @@
         </div>
       </div>
 
-      <!-- Mobile Menu -->
-      <div id="mobile-menu" class="hidden">
+      <!-- Mobile Menu (No 'hidden' class initially, handled by css max-height) -->
+      <div id="mobile-menu">
         <a href="#home" class="mobile-nav-link">Home</a>
         <a href="#about" class="mobile-nav-link">About</a>
         <a href="#projects" class="mobile-nav-link">Projects</a>
@@ -653,7 +691,7 @@
   <!-- Main Content -->
   <main class="container">
     <!-- Section 1: Hero -->
-    <section id="home" class="hero-section">
+    <section id="home" class="hero-section reveal-on-scroll">
       <div class="hero-content">
         <h1>Hi, I'm <span>Kerwien</span>.</h1>
         <h2>I build and design exceptional web experiences.</h2>
@@ -673,7 +711,7 @@
     <section id="about" class="section-padding">
       <div class="about-grid">
         <!-- Introduction Text -->
-        <div class="about-text">
+        <div class="about-text reveal-on-scroll">
           <h2>About Me</h2>
           <p>
             Hello! I'm Kerwien, a developer-designer hybrid with over 3 years
@@ -689,7 +727,7 @@
         </div>
 
         <!-- Image -->
-        <div class="about-img">
+        <div class="about-img reveal-on-scroll reveal-delay-200">
           <img src="assets/me.png" alt="Abstract code and design"
             onerror="this.src='https://placehold.co/600x400/334155/e2e8f0?text=Image+Error'" />
         </div>
@@ -697,10 +735,10 @@
 
       <!-- What I Do Section -->
       <div>
-        <h3 class="services-title">What I Do</h3>
+        <h3 class="services-title reveal-on-scroll">What I Do</h3>
         <div class="services-grid">
           <!-- Card 1 -->
-          <div class="service-card">
+          <div class="service-card reveal-on-scroll reveal-delay-100">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
               <circle cx="12" cy="7" r="4" />
@@ -710,7 +748,7 @@
           </div>
 
           <!-- Card 2 -->
-          <div class="service-card">
+          <div class="service-card reveal-on-scroll reveal-delay-200">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
               <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
               <line x1="3" y1="9" x2="21" y2="9" />
@@ -721,7 +759,7 @@
           </div>
 
           <!-- Card 3 -->
-          <div class="service-card">
+          <div class="service-card reveal-on-scroll reveal-delay-300">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="m12 19 7-7 3 3-7 7-3-3z" />
               <path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
@@ -735,7 +773,7 @@
       </div>
 
       <!-- Certifications -->
-      <div class="certs-container">
+      <div class="certs-container reveal-on-scroll">
         <h3>Licenses & Certifications</h3>
         <div class="certs-flex">
           <div class="cert-item">
@@ -756,7 +794,7 @@
 
     <!-- Section 3: Projects -->
     <section id="projects" class="section-padding">
-      <div class="section-header">
+      <div class="section-header reveal-on-scroll">
         <h2>Project Showcase</h2>
         <div class="section-bar"></div>
       </div>
@@ -764,7 +802,7 @@
       <!-- Project Grid -->
       <div class="projects-grid">
         <!-- Project Card 1 -->
-        <div class="project-card">
+        <div class="project-card reveal-on-scroll">
           <img class="project-img" src="assets/cw.png" alt="Shopify Store" onerror="this.src='https://placehold.co/600x400/1e293b/818cf8?text=Image+Not+Found'" />
           <div class="project-content">
             <h3>Shopify Store</h3>
@@ -792,7 +830,7 @@
         </div>
 
         <!-- Project Card 2 -->
-        <div class="project-card">
+        <div class="project-card reveal-on-scroll reveal-delay-100">
           <img class="project-img" src="assets/hgg.png" alt="Real Estate" onerror="this.src='https://placehold.co/600x400/1e293b/a78bfa?text=Image+Not+Found'" />
           <div class="project-content">
             <h3>Real Estate Listings</h3>
@@ -815,7 +853,7 @@
         </div>
 
         <!-- Project Card 3 -->
-        <div class="project-card">
+        <div class="project-card reveal-on-scroll reveal-delay-200">
           <img class="project-img" src="assets/insight.png" alt="Analytics" onerror="this.src='https://placehold.co/600x400/1e293b/34d399?text=Image+Not+Found'" />
           <div class="project-content">
             <h3>Custom Analytics</h3>
@@ -837,7 +875,7 @@
         </div>
 
          <!-- Project Card 4 -->
-         <div class="project-card">
+         <div class="project-card reveal-on-scroll">
             <img class="project-img" src="assets/nuspine.png" alt="NuSpine" onerror="this.src='https://placehold.co/600x400/1e293b/34d399?text=Image+Not+Found'" />
             <div class="project-content">
               <h3>Chiropractic Care</h3>
@@ -860,7 +898,7 @@
           </div>
 
         <!-- Project Card 5 -->
-        <div class="project-card">
+        <div class="project-card reveal-on-scroll reveal-delay-100">
             <img class="project-img" src="assets/brush.png" alt="Dental" onerror="this.src='https://placehold.co/600x400/1e293b/34d399?text=Image+Not+Found'" />
             <div class="project-content">
               <h3>Dental Site</h3>
@@ -882,7 +920,7 @@
           </div>
   
           <!-- Project Card 6 -->
-          <div class="project-card">
+          <div class="project-card reveal-on-scroll reveal-delay-200">
             <img class="project-img" src="assets/sweat.png" alt="Fitness" onerror="this.src='https://placehold.co/600x400/1e293b/34d399?text=Image+Not+Found'" />
             <div class="project-content">
               <h3>Fitness Studio</h3>
@@ -904,7 +942,7 @@
           </div>
 
           <!-- Project Card 7 -->
-          <div class="project-card">
+          <div class="project-card reveal-on-scroll">
             <img class="project-img" src="assets/solar.png" alt="Solar" onerror="this.src='https://placehold.co/600x400/1e293b/34d399?text=Image+Not+Found'" />
             <div class="project-content">
               <h3>Renewable Energy</h3>
@@ -926,7 +964,7 @@
           </div>
 
           <!-- Project Card 8 -->
-          <div class="project-card">
+          <div class="project-card reveal-on-scroll reveal-delay-100">
             <img class="project-img" src="assets/massage.png" alt="Massage" onerror="this.src='https://placehold.co/600x400/1e293b/34d399?text=Image+Not+Found'" />
             <div class="project-content">
               <h3>Massage Company</h3>
@@ -948,7 +986,7 @@
           </div>
 
           <!-- Project Card 9 -->
-          <div class="project-card">
+          <div class="project-card reveal-on-scroll reveal-delay-200">
             <img class="project-img" src="assets/hire.png" alt="MyHire" onerror="this.src='https://placehold.co/600x400/1e293b/34d399?text=Image+Not+Found'" />
             <div class="project-content">
               <h3>Virtual Assistants</h3>
@@ -969,19 +1007,19 @@
                 <a href="https://www.mvpcareer.ph/" target="_blank" class="project-link">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c.84 0 1.65-.11 2.42-.31-1.12-1.3-1.8-3.04-1.8-4.94 0-4.04 3.1-7.32 7.03-7.32.75 0 1.47.11 2.15.31C21.16 6.04 17.07 2 12 2zm1.64 12.01c-.06.09-.09.19-.15.28-.27.41-.58.79-.93 1.13-.5.48-1.07.88-1.7 1.2-.6.29-1.25.49-1.92.58-.69.09-1.39.09-2.09-.01-.68-.1-1.34-.3-1.98-.61-.63-.3-1.23-.7-1.78-1.18-.53-.47-1-1.01-1.38-1.61C3.3 13.2 3 12.61 3 12c0-.61.3-1.2.7-1.81.4-.6.87-1.14 1.4-1.61.55-.48 1.15-.88 1.78-1.19.64-.3 1.3-.51 1.98-.6 1.4-.2 2.8-.09 4.07.3.68.21 1.32.51 1.9.91.56.38 1.07.84 1.5 1.36.43.52.78 1.1.99 1.75.14.43.21.87.21 1.32 0 .69-.14 1.37-.42 2-.17.38-.39.73-.65 1.06zm1.03-2.61c-.2-.68-.52-1.3-.95-1.82-.43-.52-.94-.96-1.5-1.31-.57-.36-1.18-.62-1.81-.79-.63-.16-1.27-.23-1.91-.23-.64 0-1.28.07-1.91.23-.63.17-1.24.43-1.81.79-.56.35-1.07.79-1.5-1.31-.43.52-.75 1.14-.95 1.82-.2.68-.29 1.38-.29 2.1 0 .72.09 1.42.29 2.1.2.68.52 1.3.95 1.82.43.52.94.96 1.5 1.31.57.36 1.18-.62 1.81-.79.63.16 1.27.23 1.91.23.64 0 1.28.07 1.91.23.63-.17 1.24-.43 1.81-.79.56-.35 1.07.79 1.5-1.31.43-.52.75 1.14-.95-1.82.2-.68.29-1.38.29-2.1 0-.72-.09-1.42-.29-2.1zM18 12c0-3.31-2.69-6-6-6s-6 2.69-6 6 2.69 6 6 6 6-2.69 6-6z" />
-                  </svg>
-                  Related Site
-                </a>
-              </div>
+                </svg>
+                Related Site
+              </a>
             </div>
           </div>
+        </div>
 
       </div>
     </section>
 
     <!-- Section 4: Contact -->
     <section id="contact" class="section-padding">
-      <div class="contact-container">
+      <div class="contact-container reveal-on-scroll">
         <div class="section-header">
           <h2>Get In Touch</h2>
           <div class="section-bar"></div>
@@ -1024,14 +1062,17 @@
   <!-- JavaScript -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      // --- Mobile Menu Toggle ---
+      // --- Mobile Menu Toggle with Animation ---
       const menuButton = document.getElementById("mobile-menu-button");
       const mobileMenu = document.getElementById("mobile-menu");
       const openIcon = document.getElementById("menu-open-icon");
       const closeIcon = document.getElementById("menu-close-icon");
 
       menuButton.addEventListener("click", () => {
-        mobileMenu.classList.toggle("hidden");
+        // Toggle the class that controls max-height and opacity
+        mobileMenu.classList.toggle("menu-open");
+        
+        // Toggle icons
         openIcon.classList.toggle("hidden");
         closeIcon.classList.toggle("hidden");
       });
@@ -1050,26 +1091,26 @@
             });
           }
 
-          // If it's a mobile nav link, close the menu
-          if (this.classList.contains("mobile-nav-link")) {
-            mobileMenu.classList.add("hidden");
+          // Close menu if it's open (for mobile)
+          if (mobileMenu.classList.contains("menu-open")) {
+            mobileMenu.classList.remove("menu-open");
             openIcon.classList.remove("hidden");
             closeIcon.classList.add("hidden");
           }
         });
       });
 
-      // --- Active Nav Link Highlighting on Scroll (ScrollSpy) ---
+      // --- Scroll Spy & Active Link ---
       const sections = document.querySelectorAll("section");
       const navLinks = document.querySelectorAll(".nav-link");
 
-      const observerOptions = {
+      const scrollSpyOptions = {
         root: null,
         rootMargin: "0px",
-        threshold: 0.5, // 50% of the section must be visible
+        threshold: 0.5,
       };
 
-      const observer = new IntersectionObserver((entries) => {
+      const scrollSpyObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const id = entry.target.getAttribute("id");
@@ -1081,10 +1122,32 @@
             });
           }
         });
-      }, observerOptions);
+      }, scrollSpyOptions);
 
       sections.forEach((section) => {
-        observer.observe(section);
+        scrollSpyObserver.observe(section);
+      });
+
+      // --- Reveal on Scroll Animation ---
+      const revealElements = document.querySelectorAll(".reveal-on-scroll");
+
+      const revealObserverOptions = {
+        root: null,
+        rootMargin: "0px 0px -50px 0px", // Trigger slightly before bottom
+        threshold: 0.1, // Trigger when 10% visible
+      };
+
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target); // Only animate once
+          }
+        });
+      }, revealObserverOptions);
+
+      revealElements.forEach((el) => {
+        revealObserver.observe(el);
       });
 
       // --- Set Current Year in Footer ---
