@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kerwien - Developer & Designer</title>
 
-    <!-- Google Font (Inter) -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
@@ -155,6 +154,8 @@
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
           0 2px 4px -1px rgba(0, 0, 0, 0.06);
         cursor: pointer;
+        border: none;
+        text-align: center;
       }
 
       .btn-primary {
@@ -567,6 +568,253 @@
         height: 20px;
       }
 
+      /* --- UPDATED Case Study Section --- */
+      #case-study {
+        padding: 5rem 0;
+      }
+
+      .cs-glass-card {
+        background: var(--secondary-800);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 1.5rem;
+        overflow: hidden;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        display: flex;
+        flex-direction: column;
+      }
+
+      @media (min-width: 1024px) {
+        .cs-glass-card {
+          flex-direction: row;
+        }
+      }
+
+      /* Visual Side */
+      .cs-visual-side {
+        position: relative;
+        background-color: var(--secondary-900);
+        background-image: radial-gradient(
+            at 0% 0%,
+            rgba(79, 70, 229, 0.1) 0,
+            transparent 50%
+          ),
+          radial-gradient(
+            at 100% 100%,
+            rgba(67, 56, 202, 0.1) 0,
+            transparent 50%
+          );
+        padding: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      @media (min-width: 1024px) {
+        .cs-visual-side {
+          width: 40%;
+          border-bottom: 0;
+          border-right: 1px solid rgba(255, 255, 255, 0.05);
+        }
+      }
+
+      .cs-indigo-glow {
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        background: rgba(99, 102, 241, 0.1);
+        filter: blur(80px);
+        border-radius: 50%;
+        animation: cs-float 12s infinite alternate ease-in-out;
+      }
+
+      @keyframes cs-float {
+        0% {
+          transform: translate(0, 0) scale(1);
+        }
+        100% {
+          transform: translate(30px, 40px) scale(1.1);
+        }
+      }
+
+      .cs-badge {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        background: rgba(79, 70, 229, 0.15);
+        color: var(--primary-300);
+        border: 1px solid rgba(79, 70, 229, 0.3);
+        border-radius: 9999px;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.5rem;
+        margin-right: 0.5rem;
+      }
+
+      .cs-visual-title {
+        color: var(--white);
+        font-size: 2.25rem;
+        font-weight: 800;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+      }
+
+      .cs-gradient-text {
+        color: var(--primary-400);
+      }
+
+      .cs-visual-quote {
+        color: var(--secondary-400);
+        font-size: 1.125rem;
+        font-style: italic;
+        border-left: 3px solid var(--primary-500);
+        padding-left: 1rem;
+        max-width: 22rem;
+      }
+
+      /* Content Side */
+      .cs-content-side {
+        padding: 2rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      @media (min-width: 768px) {
+        .cs-content-side {
+          padding: 3.5rem;
+        }
+      }
+
+      .cs-status-indicator {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.35rem 0.75rem;
+        background: rgba(255, 255, 255, 0.03);
+        color: var(--secondary-300);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 0.5rem;
+        font-weight: 700;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        margin-bottom: 1.5rem;
+      }
+
+      .cs-dot-ping {
+        position: relative;
+        display: flex;
+        height: 0.5rem;
+        width: 0.5rem;
+      }
+
+      .cs-dot-ping span:first-child {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background: var(--primary-400);
+        border-radius: 9999px;
+        opacity: 0.75;
+        animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+      }
+
+      @keyframes ping {
+        75%,
+        100% {
+          transform: scale(2.5);
+          opacity: 0;
+        }
+      }
+
+      .cs-dot-ping span:last-child {
+        position: relative;
+        height: 0.5rem;
+        width: 0.5rem;
+        background: var(--primary-600);
+        border-radius: 9999px;
+      }
+
+      .cs-main-heading {
+        font-size: 1.75rem;
+        font-weight: 800;
+        color: var(--white);
+        line-height: 1.3;
+        margin-bottom: 1.25rem;
+      }
+
+      @media (min-width: 768px) {
+        .cs-main-heading {
+          font-size: 2.25rem;
+        }
+      }
+
+      .cs-description {
+        color: var(--secondary-400);
+        font-size: 1.125rem;
+        margin-bottom: 2.5rem;
+      }
+
+      .cs-stats-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-bottom: 2.5rem;
+      }
+
+      @media (min-width: 640px) {
+        .cs-stats-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      .cs-stat-card {
+        display: flex;
+        gap: 1rem;
+        padding: 1.25rem;
+        background: rgba(15, 23, 42, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 0.75rem;
+      }
+
+      .cs-stat-icon {
+        color: var(--primary-400);
+        flex-shrink: 0;
+      }
+
+      .cs-stat-title {
+        color: var(--white);
+        font-weight: 700;
+        font-size: 1.125rem;
+      }
+
+      .cs-stat-desc {
+        color: var(--secondary-500);
+        font-size: 0.875rem;
+      }
+
+      .cs-footer {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        opacity: 0.6;
+      }
+
+      .cs-footer-text {
+        font-size: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      .cs-divider {
+        height: 1rem;
+        width: 1px;
+        background: var(--secondary-700);
+      }
+
       /* --- Contact Section --- */
       .contact-container {
         text-align: center;
@@ -690,16 +938,13 @@
   </head>
 
   <body>
-    <!-- Header & Navigation -->
     <header>
       <nav>
         <div class="container nav-wrapper">
-          <!-- Logo -->
           <div class="logo-container">
             <a href="#home" class="logo">Kerwien</a>
           </div>
 
-          <!-- Desktop Navigation -->
           <div class="desktop-menu">
             <a href="#home" class="nav-link">Home</a>
             <a href="#about" class="nav-link">About</a>
@@ -707,18 +952,15 @@
             <a href="#contact" class="nav-link">Contact</a>
           </div>
 
-          <!-- Right Section -->
           <div style="display: flex; align-items: center">
             <div class="nav-cta">
               <a href="/files/Resume.pdf" class="btn btn-primary" download
                 >Download Resume</a
               >
             </div>
-            <!-- Mobile Menu Button -->
             <div class="mobile-menu-btn-wrapper">
               <button id="mobile-menu-button" class="mobile-toggle">
                 <span class="sr-only">Open main menu</span>
-                <!-- Hamburger Icon -->
                 <svg
                   id="menu-open-icon"
                   xmlns="http://www.w3.org/2000/svg"
@@ -733,7 +975,6 @@
                     d="M4 6h16M4 12h16m-7 6h7"
                   />
                 </svg>
-                <!-- Close Icon -->
                 <svg
                   id="menu-close-icon"
                   class="hidden"
@@ -754,7 +995,6 @@
           </div>
         </div>
 
-        <!-- Mobile Menu (No 'hidden' class initially, handled by css max-height) -->
         <div id="mobile-menu">
           <a href="#home" class="mobile-nav-link">Home</a>
           <a href="#about" class="mobile-nav-link">About</a>
@@ -770,9 +1010,7 @@
       </nav>
     </header>
 
-    <!-- Main Content -->
     <main class="container">
-      <!-- Section 1: Hero -->
       <section id="home" class="hero-section reveal-on-scroll">
         <div class="hero-content">
           <h1>Hi, I'm <span>Kerwien</span>.</h1>
@@ -789,30 +1027,15 @@
         </div>
       </section>
 
-      <!-- Section 2: About Me -->
       <section id="about" class="section-padding">
         <div class="about-grid">
-          <!-- Introduction Text -->
           <div class="about-text reveal-on-scroll">
             <h2>About Me</h2>
             <p>
-              Hello! I’m Kerwien, a developer designer hybrid with over four
-              years of experience leading teams and building thoughtful,
-              high-impact digital solutions. I believe the strongest products
-              live at the intersection of clear strategy, smart logic, and
-              refined design.
-            </p>
-            <p>
-              My background includes managing people and projects, translating
-              business goals into data-driven insights, creating actionable
-              reports, leveraging AI to streamline workflows, and building
-              high-converting landing pages and funnels designed to support ad
-              campaigns and drive measurable results, while staying hands-on
-              from concept to delivery.
+             Hello! I’m Kerwien, a developer designer hybrid with over four years of experience building high impact digital solutions. I lead teams, translate business goals into data driven strategies, leverage AI to streamline workflows, and create high converting landing pages and funnels while staying hands on from concept to delivery.
             </p>
           </div>
 
-          <!-- Image -->
           <div class="about-img reveal-on-scroll reveal-delay-200">
             <img
               src="assets/kerk.png"
@@ -822,11 +1045,9 @@
           </div>
         </div>
 
-        <!-- What I Do Section -->
         <div>
           <h3 class="services-title reveal-on-scroll">What I Do</h3>
           <div class="services-grid">
-            <!-- Card 1 -->
             <div class="service-card reveal-on-scroll reveal-delay-100">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -847,7 +1068,6 @@
               </p>
             </div>
 
-            <!-- Card 2 -->
             <div class="service-card reveal-on-scroll reveal-delay-200">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -869,7 +1089,6 @@
               </p>
             </div>
 
-            <!-- Card 3 -->
             <div class="service-card reveal-on-scroll reveal-delay-300">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -894,7 +1113,6 @@
           </div>
         </div>
 
-        <!-- Certifications -->
         <div class="certs-container reveal-on-scroll">
           <h3>Certifications</h3>
           <div class="certs-flex">
@@ -964,16 +1182,13 @@
         </div>
       </section>
 
-      <!-- Section 3: Projects -->
       <section id="projects" class="section-padding">
         <div class="section-header reveal-on-scroll">
           <h2>Project Showcase</h2>
           <div class="section-bar"></div>
         </div>
 
-        <!-- Project Grid -->
         <div class="projects-grid">
-          <!-- Project Card 1 -->
           <div class="project-card reveal-on-scroll">
             <img
               class="project-img"
@@ -1034,7 +1249,6 @@
             </div>
           </div>
 
-          <!-- Project Card 2 -->
           <div class="project-card reveal-on-scroll reveal-delay-100">
             <img
               class="project-img"
@@ -1079,7 +1293,6 @@
             </div>
           </div>
 
-          <!-- Project Card 3 -->
           <div class="project-card reveal-on-scroll reveal-delay-200">
             <img
               class="project-img"
@@ -1124,7 +1337,6 @@
             </div>
           </div>
 
-          <!-- Project Card 4 -->
           <div class="project-card reveal-on-scroll">
             <img
               class="project-img"
@@ -1169,7 +1381,6 @@
             </div>
           </div>
 
-          <!-- Project Card 5 -->
           <div class="project-card reveal-on-scroll reveal-delay-100">
             <img
               class="project-img"
@@ -1214,7 +1425,6 @@
             </div>
           </div>
 
-          <!-- Project Card 6 -->
           <div class="project-card reveal-on-scroll reveal-delay-200">
             <img
               class="project-img"
@@ -1258,7 +1468,6 @@
             </div>
           </div>
 
-          <!-- Project Card 7 -->
           <div class="project-card reveal-on-scroll">
             <img
               class="project-img"
@@ -1302,7 +1511,6 @@
             </div>
           </div>
 
-          <!-- Project Card 8 -->
           <div class="project-card reveal-on-scroll reveal-delay-100">
             <img
               class="project-img"
@@ -1347,7 +1555,6 @@
             </div>
           </div>
 
-          <!-- Project Card 9 -->
           <div class="project-card reveal-on-scroll reveal-delay-200">
             <img
               class="project-img"
@@ -1410,7 +1617,6 @@
             </div>
           </div>
 
-          <!-- Project Card 10 -->
           <div class="project-card reveal-on-scroll reveal-delay-100">
             <img
               class="project-img"
@@ -1455,7 +1661,6 @@
             </div>
           </div>
 
-          <!-- Project Card 11 -->
           <div class="project-card reveal-on-scroll reveal-delay-100">
             <img
               class="project-img"
@@ -1499,7 +1704,6 @@
             </div>
           </div>
 
-          <!-- Project Card 12 -->
           <div class="project-card reveal-on-scroll reveal-delay-100">
             <img
               class="project-img"
@@ -1545,7 +1749,146 @@
         </div>
       </section>
 
-      <!-- Contact -->
+      <section id="case-study" class="section-padding">
+        <div class="section-header reveal-on-scroll">
+          <h2>Case Study</h2>
+          <div class="section-bar"></div>
+        </div>
+
+        <div class="cs-glass-card reveal-on-scroll">
+          <div class="cs-visual-side">
+            <div class="cs-indigo-glow" style="top: -1rem; left: -1rem"></div>
+
+            <div class="cs-visual-content">
+              <div class="cs-badge-group">
+                <span class="cs-badge">Responsive</span>
+                <span class="cs-badge">Lead Gen</span>
+              </div>
+
+              <h3 class="cs-visual-title">
+                Bespoke <br />
+                <span class="cs-gradient-text">Digital Solutions</span>
+              </h3>
+
+              <p class="cs-visual-quote">
+                "Creating high-performing online presences that drive real
+                business growth."
+              </p>
+
+              <div
+                style="
+                  margin-top: 3rem;
+                  display: flex;
+                  gap: 0.75rem;
+                  opacity: 0.2;
+                "
+              >
+                <div
+                  style="
+                    height: 6px;
+                    width: 64px;
+                    background: var(--primary-600);
+                    border-radius: 99px;
+                  "
+                ></div>
+                <div
+                  style="
+                    height: 6px;
+                    width: 16px;
+                    background: var(--secondary-700);
+                    border-radius: 99px;
+                  "
+                ></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cs-content-side">
+            <div class="cs-status-indicator">
+              <div class="cs-dot-ping">
+                <span></span>
+                <span></span>
+              </div>
+              MyPortal Success Story
+            </div>
+
+            <h2 class="cs-main-heading">
+              Overcoming the Roadblock of Underperforming Websites
+            </h2>
+
+            <p class="cs-description">
+              Whether it's an outdated design or a generic template, an
+              underperforming site holds your brand back. We build
+              custom-tailored experiences that work seamlessly on every device.
+            </p>
+
+            <div class="cs-stats-grid">
+              <div class="cs-stat-card">
+                <div class="cs-stat-icon">
+                  <svg
+                    width="24"
+                    height="24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="cs-stat-title">Increased Visits</h4>
+                  <p class="cs-stat-desc">Growth in traffic.</p>
+                </div>
+              </div>
+
+              <div class="cs-stat-card">
+                <div class="cs-stat-icon">
+                  <svg
+                    width="24"
+                    height="24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    <path
+                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                    ></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="cs-stat-title">Higher Engagement</h4>
+                  <p class="cs-stat-desc">More interactions.</p>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <a
+                href="https://docs.google.com/document/d/1V0STouC28zbDV_bsYxh39Ta7TR_8xIrvex_qd7aAo98/edit?usp=sharing"
+                target="_blank"
+                class="btn btn-primary"
+                style="width: 100%; padding: 1rem"
+              >
+                Access Full Project Report
+              </a>
+
+              <div class="cs-footer">
+                <span class="cs-footer-text">Shared Document</span>
+                <div class="cs-divider"></div>
+                <span class="cs-footer-text" style="color: var(--secondary-500)"
+                  >Website Report</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="contact" class="section-padding">
         <div class="contact-container reveal-on-scroll">
           <div class="section-header">
@@ -1565,7 +1908,6 @@
           >
 
           <div class="social-links">
-            <!-- LinkedIn -->
             <a
               href="https://www.linkedin.com/in/kerwienbengil01/"
               target="_blank"
@@ -1583,7 +1925,6 @@
                 />
               </svg>
             </a>
-            <!-- GitHub -->
             <a
               href="https://github.com/kerker20"
               class="social-icon"
@@ -1605,7 +1946,6 @@
       </section>
     </main>
 
-    <!-- Footer -->
     <footer>
       <div class="container">
         <p>
@@ -1614,7 +1954,6 @@
       </div>
     </footer>
 
-    <!-- JavaScript -->
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         // --- Mobile Menu Toggle with Animation ---
